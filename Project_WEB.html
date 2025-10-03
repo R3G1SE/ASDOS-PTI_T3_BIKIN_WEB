@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Judul Web -->
+  <title>Login Page</title>
+
+  <!-- Penghubung ke CSS -->
+  <link rel="stylesheet" href="Project_WEB.css">
+
+  <!-- Style Font -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+
+  <!-- BG Web -->
+  <link style="background-image: url('https://i.pinimg.com/736x/0c/b8/73/0cb873e573915bc334a4180f2aaa215f.jpg');"></>
+  <div class="form-area">
+    <div class="wrapper">
+
+      <!-- Judul Dalam Box -->
+      <h2>LOGIN</h2>
+
+      <!-- Form untuk Tempat Mengisi Data  -->
+      <form>
+
+        <!-- Bagian Username  -->
+        <div class="box"> 
+          <input type="text" placeholder="Username">
+          <i class="fa fa-user"></i>
+        </div> 
+
+        <!-- Bagian Password -->
+        <div class="box">
+          <input type="password" placeholder="Password" id="password">
+          <i class="fa fa-lock" id="eyeicon"></i>
+        </div>
+
+        <!-- Membuat Opsi Form -->
+        <div class="options">
+          <label>
+            <input type="checkbox"> Remember Me?</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+
+        <!-- Tombol Submit -->
+        <button type="submit">Submit</button>
+
+      </form>
+
+      <p>Don't have an account? <a href="Register_WEB.html">Register</a></p>
+    </div>
+  </div>
+
+  <!-- Untuk Fungsi -->
+  <script>
+    let eyeicon = document.getElementById("eyeicon");
+    let password = document.getElementById("password");
+
+    eyeicon.onclick = function() {
+      if (password.type === "password"){
+        password.type = "text";
+        eyeicon.classList.remove("fa-lock");
+        eyeicon.classList.add("fa-unlock");
+      }else{
+        password.type = "password";
+        eyeicon.classList.remove("fa-unlock");
+        eyeicon.classList.add("fa-lock");
+      }
+    }
+  </script>
+
+</body>
+</html>
