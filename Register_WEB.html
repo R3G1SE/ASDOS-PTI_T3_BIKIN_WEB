@@ -17,11 +17,11 @@
                     Enter your personal information.
                 </p>
                 <ul class="steps-nav">
-                    <li class="step active">
+                    <li class="step active" id="beforeStep">
                         <span class="step-number">1</span>
                         <span class="step-text">Personal Information</span>
                     </li>
-                    <li class="step">
+                    <li class="step " id="nextStep">
                         <span class="step-number">2</span>
                         <span class="step-text">Complete</span>
                     </li>
@@ -30,32 +30,32 @@
                 </ul>
             </div>
             
-            <div class="form-content">
+            <div class="form-content" id="fromContent">
                 <div class="form-header">
-                    <span class="logo-r">R</span>
+                    <span class="logo-r">VR</span>
                     <h2>Your Personal Information</h2>
                     <p>Enter your personal information.</p>
                 </div>
 
                 <form class="personal-info-form">
                     <div class="form-group-row">
-                        <input type="text" placeholder="First Name">
-                        <input type="text" placeholder="Last Name">
+                        <input type="text" placeholder="First Name" id="fn">
+                        <input type="text" placeholder="Last Name" id="ln">
                     </div>
 
                     <div class="form-group-row">
-                        <input type="number" placeholder="Phone Number">
-                        <input type="email" placeholder="Email Address">
+                        <input type="number" placeholder="Phone Number" id="num">
+                        <input type="email" placeholder="Email Address" id="email">
                     </div>
 
                     <div class="form-group-row">
-                        <select>
+                        <select id="sel1">
                             <option value=""disabled selected hidden>Select Country</option>
                             <option value="ID">Indonesia</option>
                             <option value="MY">Malaysia</option>
                             <option value="Other" <textarea>Lainnya</option>
                         </select>
-                        <select>
+                        <select id="sel2">
                             <option value=""disabled selected hidden>Select City</option>
                             <option value="JKT">Jakarta</option>
                             <option value="JKT">Lainnya</option>
@@ -63,12 +63,36 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" class="btn next-step" onclick="window.location.href='Register_Complete_Web.html'">Next Step</button>
+                        <button type="button" class="btn next-step" onclick="nextStep()">Next Step</button>
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
 
+            <div class="Complete-Container" id="Complete-Container" style="display: none;">
+                <h1>Profile completed!</h1>
+                <p>Your information have been submitted succesfully.</p>
+                <button type="button" class="icon_btn" onclick="window.location.href='Project_WEB.html'">Back to login page</button>
+            </div>
+    </div>
+    <script>
+        const beforestepelement = document.getElementById("beforeStep")
+        const nextstepElement = document.getElementById("nextStep")
+        const Complete_Container = document.getElementById("Complete-Container")
+        const fromContent = document.getElementById("fromContent");
+        function nextStep(){
+            fromContent.style.display = "none"
+            beforestepelement.classList.remove("active")
+            const fn = document.getElementById("fn").value;
+            const ln = document.getElementById("ln").value
+            const num = document.getElementById("num").value
+            const email = document.getElementById("email").value;
+            const sel1 = document.getElementById("sel1").value;
+            const sel2 = document.getElementById("sel2").value;
+
+            console.log({fn, ln, num, email, sel1, sel2})
+            nextstepElement.classList.add("active")
+            Complete_Container.style.display = ""
+        }
+    </script>
 </body>
 </html>
