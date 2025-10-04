@@ -1,0 +1,218 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4; /* Latar belakang halaman */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.2)),
+  url("https://i.pinimg.com/736x/0c/b8/73/0cb873e573915bc334a4180f2aaa215f.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Penutup Latar Belakang Modal */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.4); 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Kontainer Utama Modal */
+.registration-modal {
+    display: flex;
+    width: 900px; 
+    max-width: 95%;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Bagian Sidebar Navigasi */
+.sidebar {
+    width: 35%; 
+    background-color: #dbdfa0; 
+    color: black;
+    padding: 50px;
+    padding-top: 70px;
+    box-sizing: border-box;
+}
+
+.sidebar .logo {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar-intro {
+    font-size: 0.9em;
+    margin-bottom: 40px;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+
+.steps-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    opacity: 0.5; 
+}
+
+.step.active {
+    opacity: 1; 
+    font-weight: bold;
+}
+
+.step-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin-right: 15px;
+    font-size: 0.9em;
+}
+
+.step.active .step-number {
+    background-color: white;
+    color: #1a4d4d;
+    border-color: white;
+}
+
+/* Bagian Konten Formulir */
+.form-content {
+    width: 65%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.form-header {
+    margin-bottom: 30px;
+}
+
+.logo-r {
+    display: inline-block;
+    background-color: #e55353; /* Warna merah seperti logo 'T' */
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.form-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.form-header p {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+/* Tata Letak Input Grid/Flexbox */
+.personal-info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak antar baris form */
+}
+
+.form-group-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Membagi baris menjadi dua kolom yang sama besar */
+    gap: 15px; /* Jarak antar kolom input */
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input:focus, select:focus {
+    border-color: #1a4d4d;
+}
+
+/* Area Tombol Aksi */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Memindahkan tombol ke kanan */
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn.next-step {
+    background-color: #dbdfa0; 
+    color: white;
+    font-weight: bold;
+}
+
+.btn.next-step:hover {
+    background-color: gray;
+}
+
+/* Opsional: Media Query untuk tampilan mobile */
+@media (max-width: 768px) {
+    .registration-modal {
+        flex-direction: column;
+        width: 95%;
+        margin: 20px;
+    }
+
+    .sidebar, .form-content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .sidebar {
+        border-radius: 12px 12px 0 0;
+    }
+
+    .form-group-row {
+        grid-template-columns: 1fr; 
+    }
+}

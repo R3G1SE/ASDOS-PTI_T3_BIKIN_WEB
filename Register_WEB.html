@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="Register_WEB.css">
+</head>
+<body>
+
+    <div class="modal-backdrop">
+        <div class="registration-modal">
+            
+            <div class="sidebar">
+                <div class="logo">REGISTER</div>
+                <p class="sidebar-intro">
+                    Enter your personal information.
+                </p>
+                <ul class="steps-nav">
+                    <li class="step active">
+                        <span class="step-number">1</span>
+                        <span class="step-text">Personal Information</span>
+                    </li>
+                    <li class="step">
+                        <span class="step-number">2</span>
+                        <span class="step-text">Complete</span>
+                    </li>
+                  
+                
+                </ul>
+            </div>
+            
+            <div class="form-content">
+                <div class="form-header">
+                    <span class="logo-r">R</span>
+                    <h2>Your Personal Information</h2>
+                    <p>Enter your personal information.</p>
+                </div>
+
+                <form class="personal-info-form">
+                    <div class="form-group-row">
+                        <input type="text" placeholder="First Name">
+                        <input type="text" placeholder="Last Name">
+                    </div>
+
+                    <div class="form-group-row">
+                        <input type="number" placeholder="Phone Number">
+                        <input type="email" placeholder="Email Address">
+                    </div>
+
+                    <div class="form-group-row">
+                        <select>
+                            <option value=""disabled selected hidden>Select Country</option>
+                            <option value="ID">Indonesia</option>
+                            <option value="MY">Malaysia</option>
+                            <option value="Other" <textarea>Lainnya</option>
+                        </select>
+                        <select>
+                            <option value=""disabled selected hidden>Select City</option>
+                            <option value="JKT">Jakarta</option>
+                            <option value="JKT">Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn next-step" onclick="window.location.href='Register_Complete_Web.html'">Next Step</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
