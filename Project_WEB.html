@@ -9,16 +9,18 @@
 
   <!-- Penghubung ke CSS -->
   <link rel="stylesheet" href="Project_WEB.css">
+  <!-- bagian ini untuk menambahkan liblary dari sweetalert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Style Font -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
+ <!-- typewriter effect -->
  <div id="messagecnt">
   <h1 id="message"></h1>
  </div>
-  
+  <!-- pada bagian ini sebenarnya untuk membuat animasi seperti bola gitu dari tengah membesar -->
   <div class="hole-box" id="hole-box"></div>
   <!-- BG Web -->
   <link style="background-image: url('https://i.pinimg.com/736x/0c/b8/73/0cb873e573915bc334a4180f2aaa215f.jpg');"></>
@@ -50,7 +52,7 @@
         </div>
 
         <!-- Tombol Submit -->
-        <button type="button" onclick="login()">Submit</button>
+        <button type="button" id="Submit" onclick="login()">Submit</button>
 
       </form>
 
@@ -60,6 +62,7 @@
 
   <!-- Untuk Fungsi -->
   <script>
+
     let eyeicon = document.getElementById("eyeicon");
     let password = document.getElementById("password");
     let sumbit = document.getElementById("Submit");
@@ -81,18 +84,6 @@
         eyeicon.classList.remove("fa-unlock");
         eyeicon.classList.add("fa-lock");
       }
-    }
-
-    function saveToLocalstorage(key, value){
-      return localStorage.setItem(key, value);
-    }
-
-    function getDataFromLocalstorage(key){
-      return localStorage.getItem(key);
-    }
-
-    function removeLocalStorage(key){
-      return localStorage.removeItem(key);
     }
 
     function animasiNgetik(documentID,message, delay, onFinish){
@@ -122,8 +113,6 @@
     
     
     function login(){
-      const username = getDataFromLocalstorage("username")
-      const password = getDataFromLocalstorage("password")
       const passwordInput = document.getElementById("password").value;
       const usernameInput = document.getElementById("username").value;
 
@@ -147,53 +136,30 @@
         return 0; 
       }
 
-      if(!username || !password){
-        if(usernameInput != "admin" && passwordInput != "admin"){
-          Swal.fire({
-            title: "Login Gagal",
-            text: "perhatikan password dan username anda",
-            icon: "error"
-          });
-        }else{
-          console.log("berhasil login")
-          holeBox.style.animation = "shrink 3s ease-in-out forwards";
-          holeBox.addEventListener("animationend", ()=>{
-            messagecnt.style.display = "flex";
-            animasiNgetik("message", "Login Anda Berhasil 👍🏻👍🏻", 200, ()=>{
-              messagecnt.style.animation = "fadeoff 3s ease-in-out forwards"
-              messagecnt.addEventListener("animationend", ()=>{
-                window.location.href= pathAfterLogin
-              })
-            })
-
-          })
-
-        }
-    
-        tryPassword+=1;
-        return 0;
-      }
-
-      if(username != usernameInput || password != passwordInput){
+  
+      if(usernameInput != "admin" && passwordInput != "admin"){
         Swal.fire({
-            title: "Login Gagal",
-            text: "perhatikan password dan username anda",
-            icon: "error"
+          title: "Login Gagal",
+          text: "perhatikan password dan username anda",
+          icon: "error"
         });
       }else{
-        holeBox.style.animation = "shrink 3s alternate ease-in-out"
+        console.log("berhasil login")
+        holeBox.style.animation = "shrink 3s ease-in-out forwards";
         holeBox.addEventListener("animationend", ()=>{
-            messagecnt.style.display = "flex";
-            animasiNgetik("message", "Login Anda Berhasil 👍🏻👍🏻", 200, ()=>{
-              messagecnt.style.animation = "fadeoff 3s ease-in-out forwards"
-              messagecnt.addEventListener("animationend", ()=>{
-                window.location.href= pathAfterLogin
-              })
+          messagecnt.style.display = "flex";
+          animasiNgetik("message", "Login Anda Berhasil 👍🏻👍🏻", 200, ()=>{
+            messagecnt.style.animation = "fadeoff 3s ease-in-out forwards"
+            messagecnt.addEventListener("animationend", ()=>{
+              window.location.href= pathAfterLogin
             })
-
           })
+
+        })
+
       }
-      tryPassword+=1;
+    
+        tryPassword+=1;
     }
 
   </script>
