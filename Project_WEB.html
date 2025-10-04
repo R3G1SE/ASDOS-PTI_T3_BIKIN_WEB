@@ -9,36 +9,39 @@
 
   <!-- Penghubung ke CSS -->
   <link rel="stylesheet" href="Project_WEB.css">
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Style Font -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
-
+ <div id="messagecnt">
+  <h1 id="message"></h1>
+ </div>
+  
+  <div class="hole-box" id="hole-box"></div>
   <!-- BG Web -->
   <link style="background-image: url('https://i.pinimg.com/736x/0c/b8/73/0cb873e573915bc334a4180f2aaa215f.jpg');"></>
   <div class="form-area">
     <div class="wrapper">
-
       <!-- Judul Dalam Box -->
       <h2>LOGIN</h2>
-
+      
       <!-- Form untuk Tempat Mengisi Data  -->
       <form>
-
+        
         <!-- Bagian Username  -->
         <div class="box"> 
-          <input type="text" placeholder="Username">
+          <input type="text" placeholder="Username" id="username">
           <i class="fa fa-user"></i>
         </div> 
-
+        
         <!-- Bagian Password -->
         <div class="box">
           <input type="password" placeholder="Password" id="password">
           <i class="fa fa-lock" id="eyeicon"></i>
         </div>
-
+        
         <!-- Membuat Opsi Form -->
         <div class="options">
           <label>
@@ -47,7 +50,7 @@
         </div>
 
         <!-- Tombol Submit -->
-        <button type="submit">Submit</button>
+        <button type="button" onclick="login()">Submit</button>
 
       </form>
 
@@ -55,10 +58,18 @@
     </div>
   </div>
 
-  <!-- Untuk Fungsi Password Simbol Mata -->
+  <!-- Untuk Fungsi -->
   <script>
     let eyeicon = document.getElementById("eyeicon");
     let password = document.getElementById("password");
+    let sumbit = document.getElementById("Submit");
+    let holeBox =document.getElementById("hole-box");
+    let messagecnt = document.getElementById("messagecnt")
+
+    let pathAfterLogin = "" // misalnya /profile.html
+
+    let tryPassword = 0;
+    
 
     eyeicon.onclick = function() {
       if (password.type === "password"){
@@ -71,6 +82,120 @@
         eyeicon.classList.add("fa-lock");
       }
     }
+
+    function saveToLocalstorage(key, value){
+      return localStorage.setItem(key, value);
+    }
+
+    function getDataFromLocalstorage(key){
+      return localStorage.getItem(key);
+    }
+
+    function removeLocalStorage(key){
+      return localStorage.removeItem(key);
+    }
+
+    function animasiNgetik(documentID,message, delay, onFinish){
+      const element = document.getElementById(documentID);
+      const msg = message;
+      const message_split = message.split("");
+      const maxpoint = message_split.length -1
+      let point = 0
+
+      let msgFull = ""
+      
+      let interval = setInterval(()=>{
+        msgFull += message_split[point] 
+        element.innerText = msgFull
+        if(point >= maxpoint){
+          clearInterval(interval);
+          if(typeof(onFinish) == "function"){
+            onFinish()
+          }
+        }
+        point +=1;
+      }, delay)
+      return 0
+    }
+
+    
+    
+    
+    function login(){
+      const username = getDataFromLocalstorage("username")
+      const password = getDataFromLocalstorage("password")
+      const passwordInput = document.getElementById("password").value;
+      const usernameInput = document.getElementById("username").value;
+
+      console.log({passwordInput, usernameInput})
+
+      console.log(tryPassword)
+      if(tryPassword > 2) {
+        Swal.fire({
+          title: "Terlalu Banyak Percobaan",
+          text: "mohon coba lagi setelah 1 menit",
+          icon: "error"
+        });
+
+        sumbit.disabled = true
+        let interval = setTimeout(()=>{
+          console.log("print");
+          sumbit.disabled = false
+          tryPassword = 0;
+          clearTimeout(interval)
+        }, 60000);
+        return 0; 
+      }
+
+      if(!username || !password){
+        if(usernameInput != "admin" && passwordInput != "admin"){
+          Swal.fire({
+            title: "Login Gagal",
+            text: "perhatikan password dan username anda",
+            icon: "error"
+          });
+        }else{
+          console.log("berhasil login")
+          holeBox.style.animation = "shrink 3s ease-in-out forwards";
+          holeBox.addEventListener("animationend", ()=>{
+            messagecnt.style.display = "flex";
+            animasiNgetik("message", "Login Anda Berhasil 👍🏻👍🏻", 200, ()=>{
+              messagecnt.style.animation = "fadeoff 3s ease-in-out forwards"
+              messagecnt.addEventListener("animationend", ()=>{
+                window.location.href= pathAfterLogin
+              })
+            })
+
+          })
+
+        }
+    
+        tryPassword+=1;
+        return 0;
+      }
+
+      if(username != usernameInput || password != passwordInput){
+        Swal.fire({
+            title: "Login Gagal",
+            text: "perhatikan password dan username anda",
+            icon: "error"
+        });
+      }else{
+        holeBox.style.animation = "shrink 3s alternate ease-in-out"
+        holeBox.addEventListener("animationend", ()=>{
+            messagecnt.style.display = "flex";
+            animasiNgetik("message", "Login Anda Berhasil 👍🏻👍🏻", 200, ()=>{
+              messagecnt.style.animation = "fadeoff 3s ease-in-out forwards"
+              messagecnt.addEventListener("animationend", ()=>{
+                window.location.href= pathAfterLogin
+              })
+            })
+
+          })
+      }
+      tryPassword+=1;
+    }
+
   </script>
 
 </body>

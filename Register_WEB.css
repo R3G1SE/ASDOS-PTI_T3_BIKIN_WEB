@@ -216,3 +216,33 @@ input:focus, select:focus {
         grid-template-columns: 1fr; 
     }
 }
+
+
+.Complete-Container {
+    color: black;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    place-items: center;
+    display: grid;
+}
+
+.Complete-Container h1 {
+    font-size: 20px;  
+    margin-top: auto; 
+}
+
+.Complete-Container p { 
+    margin-bottom: auto;     
+}
+
+
+.icon_btn{
+    border: none;
+    background-color: #4e9750;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px 30px;
+}
