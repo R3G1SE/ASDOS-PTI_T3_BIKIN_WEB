@@ -122,7 +122,7 @@
       if(tryPassword > 2) {
         Swal.fire({
           title: "Terlalu Banyak Percobaan",
-          text: "mohon coba lagi setelah 1 menit",
+          text: "mohon coba lagi setelah 1 menit. Try using \nusername: admin \npassword: admin",
           icon: "error"
         });
 
@@ -140,7 +140,7 @@
       if(usernameInput != "admin" && passwordInput != "admin"){
         Swal.fire({
           title: "Login Gagal",
-          text: "perhatikan password dan username anda",
+          text: `perhatikan password dan username anda\ntotal percobaan anda: ${tryPassword} / 2`,
           icon: "error"
         });
       }else{
